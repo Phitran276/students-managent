@@ -1,0 +1,72 @@
+#updateBtn-2{
+    display: none;
+}
+#updateBtn-2, #addBtn{
+    margin: 0 auto;
+}
+.button-group.update #updateBtn-2{
+    display: block;
+}
+
+.button-group.update #addBtn{
+    display: none;
+}
+
+#student__list .updateBtn, #student__list .removeBtn{
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all .25s;
+}
+#student__list .updateBtn{
+    color: #1976d2;
+}
+
+#student__list .updateBtn:hover{
+    background-color: #1976d2;
+    color:white;
+}
+
+#student__list .removeBtn{
+    color: #d32f2f;
+}
+
+#student__list .removeBtn:hover{
+    background-color: #d32f2f;
+    color: white;
+}
+
+.student__item{
+    cursor: pointer;
+}
+
+.student__item-btns{
+    padding: 0!important;
+    padding-top: 5px!important;
+    display: none;
+    animation-name: toggleBtns;
+    animation-duration: .25s;
+    border-top: none!important;
+    white-space: nowrap;
+}
+
+.student__table.settings .student__item-btns{
+    display: block;
+}
+
+@keyframes toggleBtns{
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.error-text{
+    font-size: 14px;
+    font-style: italic;
+}

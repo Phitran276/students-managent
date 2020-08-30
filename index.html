@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Managements</title>
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- FONTAWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container pt-3">
+        <h3 class="text-primary">Thông tin sinh viên</h3>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="student-code">Mã sinh viên:</label>
+                    <input type="text" id="student-code" class="form-control" placeholder="Nhập mã sinh viên">
+                    <span class="error-text text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="student-name">Họ tên:</label>
+                    <input type="text" id="student-name" class="form-control" placeholder="Nhập họ tên sinh viên">
+                    <span class="error-text text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="student-cmnd">CMND:</label>
+                    <input type="text" id="student-cmnd" class="form-control" placeholder="Nhập CMND">
+                    <span class="error-text text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="student-phone">Điện thoại:</label>
+                    <input type="text" id="student-phone" class="form-control" placeholder="Nhập số điện thoại">
+                    <span class="error-text text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="student-email">Email:</label>
+                    <input type="text" id="student-email" class="form-control" placeholder="Nhập email">
+                    <span class="error-text text-danger"></span>
+                </div>
+                <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="score-math">Toán:</label>
+                                <input type="number" id="score-math" class="form-control" placeholder="Nhập điểm toán">
+                                <span class="error-text text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="score-physics">Lý:</label>
+                                <input type="number" id="score-physics" class="form-control" placeholder="Nhập điểm lý">
+                                <span class="error-text text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                              <div class="form-group">
+                                <label for="score-chemistry">Hóa:</label>
+                                <input type="number" id="score-chemistry" class="form-control" placeholder="Nhập điểm hóa">
+                                <span class="error-text text-danger"></span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-group text-center">
+            <button id="addBtn" class="btn btn-success">Thêm sinh viên</button>
+            <button id="updateBtn-2" class="btn btn-primary">Cập nhật sinh viên</button>
+        </div>
+        <div class="row pt-3">
+            <div class="col-7">
+                <h4 class="text-secondary">Tìm kiếm sinh viên</h4>
+                <input type="text" id="student-search" class="form-control" placeholder="Nhập tên sinh viên">
+            </div>
+            <div class="col-5">
+                <h4 class="text-secondary">Sắp xếp sinh viên</h4>
+                
+                <div class="input-group">
+                    <select class="custom-select" id="student-sort">
+                        <option selected disabled value="" >--Chọn để sắp xếp--</option>
+                        <option value="sort-score-down">
+                            Theo điểm (cao &raquo; thấp)
+                        </option>
+                        <option value="sort-score-up">
+                            Theo điểm (thấp &raquo; cao)
+                        </option>
+                        <option value="sort-letter-az">
+                            Theo tên (A &raquo; Z)
+                        </option>
+                        <option value="sort-letter-za">
+                            Theo tên (Z &raquo; A)
+                        </option>
+                        <option value="sort-normal">
+                            Mặc định (không sắp xếp)
+                        </option>
+                    </select>
+                    <div class="input-group-append">
+                        <button id="sortBtn" class="btn btn-primary">Sắp xếp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container pt-3">
+        <div class="d-flex justify-content-between">
+            <h3 class="text-primary">Danh sách sinh viên</h3>
+            <button class="btn-outline-secondary btn" id="settingBtn">Chỉnh sửa <i class="fa fa-cog"></i></button>
+        </div>
+        <!-- settings -->
+        <table class="table student__table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">MaSV</th>
+                <th scope="col">HoTen</th>
+                <th scope="col">Email</th>
+                <th scope="col">CMND</th>
+                <th scope="col">Điện thoại</th>
+                <th scope="col">Điểm TB</th>
+                <th scope="col">Xếp loại</th>
+              </tr>
+            </thead>
+            <tbody id="student__list">
+              <!-- <tr class="student__item">
+                <th scope="row">1</th>
+                <td>SV01</td>
+                <td>Peter</td>
+                <td>peter@gmail.com</td>
+                <td>123456790</td>
+                <td>0971273826</td>
+                <td>9.7</td>
+                <td>Gioi</td>
+                <td class="student__item-btns">
+                    <i class="fa fa-trash-alt" id="removeBtn"></i>
+                    <i class="fa fa-pencil-alt" id="updateBtn"></i>
+                </td>
+              </tr> -->
+              <!-- <tr class="student__item">
+                <th scope="row">2</th>
+                <td>SV01</td>
+                <td>Peter</td>
+                <td>peter@gmail.com</td>
+                <td>123456790</td>
+                <td>0971273826</td>
+                <td>9.7</td>
+                <td>Gioi</td>
+                <td class="student__item-btns">
+                    <i class="fa fa-trash-alt" id="removeBtn"></i>
+                    <i class="fa fa-pencil-alt" id="updateBtn"></i>
+                </td>
+              </tr> -->
+              <!-- <tr class="student__item">
+                <th scope="row">3</th>
+                <td>SV01</td>
+                <td>Peter</td>
+                <td>peter@gmail.com</td>
+                <td>123456790</td>
+                <td>0971273826</td>
+                <td>9.7</td>
+                <td>Gioi</td>
+                <td class="student__item-btns">
+                    <i class="fa fa-trash-alt" id="removeBtn"></i>
+                    <i class="fa fa-pencil-alt" id="updateBtn"></i>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+    </div>
+    
+
+    <!-- BOOTSTRAP 4 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- MAIN CSS -->
+    <script src="./components.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
